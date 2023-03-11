@@ -1,0 +1,159 @@
+# 第一章
+
+## 一、for循环
+
+```java
+for(int i = 1; i <= 10; i++){
+    System.out.println("牛掰666")；
+}
+```
+
+- int i = 1为执行代码的第一步
+- 判断i < = 10为代码执行的第二步
+- 执行输出"牛掰666"为第三步
+- i++为第四步骤
+
+```java
+for(;;)//死循环
+```
+
+### （一）编程思想
+
+- 化繁为简：将复杂的需求，拆解成简单的需求，逐步完成。
+- 先死后活：先考虑固定的值，然后转成可以灵活变化的值。
+
+例题：打印1~100之间所有是9的倍数的整数，统计个数以及总和
+
+```java
+int count = 0;
+int sunm = 0;
+for(i = 1; i <= 100; i++){
+    if(i % 9 == 0){
+        System.out.println("i=" + i);
+        count++;
+        sum += i;
+    }
+}
+System.out.println("count=" + count);
+System.out.println("sum=" + sum);
+```
+
+进一步优化：可以将范围开始的值和结束的值设为变量（start，end），除此之外，也可以将倍数也化为变量。
+
+## 二、while循环
+
+### （一）基本语法
+
+```java
+while(循环条件){
+    循环体（语句）;
+    循环变量迭代;
+}
+```
+
+tip：循环条件为假时，只是退出while的结构，并不是退出程序，while结构下面有代码就继续执行（do...while也一样）。
+
+```java
+do{
+    循环体（语句）
+        循环变量迭代
+}while（循环条件）；
+```
+
+while和do...while区别：while是先判断在执行（有可能一次都不执行），而do...while先执行再判断（至少执行一次）
+
+## 三、多重循环
+
+### （一）基本介绍
+
+- 将一个循环放在另一个循环体内，就形成了嵌套循环（一般建议使用两层，最好不要超过三层，否则代码可读性很差）
+
+- 嵌套循环就是把内层循环当做外层循环的循环体。当只有内层循环的循环条件为false时，才会完全跳出内层循环，才可结束外层循环的当次循环，开始下一次外层的循环
+
+  eg：
+
+  ```java
+  for(i = 1;i <= 7; i++){//第一层循环 7
+  for(int j = 1; j <= 2; j++){//第二层循环 2
+      System.out.println("ok~~");//7*2 = 14
+    }
+  }
+  ```
+
+  设外层循环次数为m次，内层为n次，则内层循环体实际上需要执行m*n次。
+
+  ![image-20230202150642274](for循环.assets/image-20230202150642274.png)
+
+###   (二)经典例题空心金字塔
+
+```java
+public class jinzita{
+public static void main(String[] args) {
+	int k = 5;
+	for (int i = 1;i <= k ;i++ ) {                  //层数
+		for (int l = 1;l <= k - i ;l++ ) {
+			System.out.print(" ");
+		}
+		for (int j = 1;j <= 2 * i - 1 ;j++ ) {
+			if (j == 1 || j == 2 * i - 1 || i == k) {
+				System.out.print("*");
+			}else{
+				System.out.print(" ");
+			}
+		}
+		System.out.println("");
+	}
+  }
+}
+```
+
+tips：要注意化繁为简
+
+## 四、跳转控制语句break
+
+### （一）基本介绍
+
+break可以用于终止某个语句块的执行，一般使用在（for，while，do-while）中
+
+![image-20230202173653060](for循环.assets/image-20230202173653060.png)
+
+### （二）注意事项
+
+- break语句出现在多层嵌套的语句块中时，可以通过**标签**指明要终止的是哪一层语句块![image-20230202175047151](for循环.assets/image-20230202175047151.png)
+
+- 如图所示，如果没有写break label2，那么默认退出到label3
+
+  字符串的比较
+
+  ```java
+  "   ".equals(变量名)
+      例如
+      String name = "贾宝玉"；
+      System.out.println("贾宝玉".equals(name));
+  输出的结果为True
+  ```
+
+## 五、跳转控制语句continue
+
+### （一）基本介绍
+
+continue语句用于结束本次循环，继续执行下一次循环(为真)，如果不符合条件则退出循环
+
+``````java
+{
+```
+continue;
+`````
+}
+``````
+
+## 六、跳转控制语句return
+
+### （一）基本介绍
+
+return使用方法，表示跳出所在的方法
+
+### (二)注意事项
+
+- 当return用在方法时，表示退出方法
+- 如果用在main时，表示退出程序
